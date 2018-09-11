@@ -1,6 +1,6 @@
 # BGRI-ECOMOD notes
 
-Authors: Dr Kwadjo Ahodo (main author), Alexa Varah (design input), for The Black Grass Resistance Initiative (BGRI)
+Authors: Dr Kwadjo Ahodo (main author), Dr Alexa Varah (design input), for The Black Grass Resistance Initiative (BGRI)
 
 Created: 2017
 
