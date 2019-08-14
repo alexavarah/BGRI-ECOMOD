@@ -150,7 +150,7 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
     
     cropBudget <- function(crop,asoil,subsidy,blackgrass,tillage,selfrot,rotpen,yieldoption){ 
       
-      # This function estimates gross margin (£/ha) and gross profit (£/ha) for each crop, taking into
+      # This function estimates gross margin (Â£/ha) and gross profit (Â£/ha) for each crop, taking into
       # consideration soil type, yield loss due to black-grass infestation,
       # farm operations and machine types, and fuel price.
       
@@ -215,14 +215,14 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
           yieldloss <- 0; wwht1 <- wwt;
           yls <- 0
         }else if(infestation=="medium"){
-          yieldloss <- 3; wwht1 <- round(wwt*(1-(3/100)),2) 
-          yls <- round((3/100)*wwht1,2)
+          yieldloss <- 0; wwht1 <- wwt;
+          yls <- 0
         }else if(infestation=="high"){
-          yieldloss <- 12; wwht1 <- round(wwt*(1-(12/100)),2)
-          yls <- round((12/100)*wwht1,2)
+          yieldloss <- 7.45; wwht1 <- round(wwt*(1-(7.45/100)),2)
+          yls <- round((7.45/100)*wwht1,2)
         }else if(infestation=="veryhigh"){
-          yieldloss <- 24; wwht1 <- round(wwt*(1-(24/100)),2)
-          yls <- round((24/100)*wwht1,2)
+          yieldloss <- 25.6; wwht1 <- round(wwt*(1-(25.6/100)),2)
+          yls <- round((25.6/100)*wwht1,2)
         }else{
           yieldloss <- 0
           wwht1 <- wwt
@@ -791,7 +791,7 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
       
       # *Sugar beet ====
       if(crops[1]=="sugarbeet"){
-        crd[h5,2] <- 5 # Cost of transporting sugarbeet @ £5/t
+        crd[h5,2] <- 5 # Cost of transporting sugarbeet @ Â£5/t
         crd[c1,2] <- snsbt # Sundry cost
         if(yieldoption=="actual"){
           crd[c3,2] <- crd[c3,2]
@@ -802,7 +802,7 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
         }
       }
       if(crops[2]=="sugarbeet"){
-        crd[h5,3] <- 5 # Cost of transporting sugarbeet @ £5/t
+        crd[h5,3] <- 5 # Cost of transporting sugarbeet @ Â£5/t
         crd[c1,3] <- snsbt # Sundry cost
         if(yieldoption=="actual"){
           crd[c3,3] <- crd[c3,3]
@@ -813,7 +813,7 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
         }
       }
       if(crops[3]=="sugarbeet"){
-        crd[h5,4] <- 5 # Cost of transporting sugarbeet @ £5/t
+        crd[h5,4] <- 5 # Cost of transporting sugarbeet @ Â£5/t
         crd[c1,4] <- snsbt # Sundry cost
         if(yieldoption=="actual"){
           crd[c3,4] <- crd[c3,4]
@@ -824,7 +824,7 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
         }
       }
       if(crops[4]=="sugarbeet"){
-        crd[h5,5] <- 5 # Cost of transporting sugarbeet @ £5/t
+        crd[h5,5] <- 5 # Cost of transporting sugarbeet @ Â£5/t
         crd[c1,5] <- snsbt # Sundry cost
         if(yieldoption=="actual"){
           crd[c3,5] <- crd[c3,5]
@@ -835,7 +835,7 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
         }
       } 
       if(crops[5]=="sugarbeet"){
-        crd[h5,6] <- 5 # Cost of transporting sugarbeet @ £5/t
+        crd[h5,6] <- 5 # Cost of transporting sugarbeet @ Â£5/t
         crd[c1,6] <- snsbt # Sundry cost
         if(yieldoption=="actual"){
           crd[c3,6] <- crd[c3,6]
@@ -846,7 +846,7 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
         }
       }
       if(crops[6]=="sugarbeet"){
-        crd[h5,7] <- 5 # Cost of transporting sugarbeet @ £5/t
+        crd[h5,7] <- 5 # Cost of transporting sugarbeet @ Â£5/t
         crd[c1,7] <- snsbt # Sundry cost
         if(yieldoption=="actual"){
           crd[c3,7] <- crd[c3,7]
@@ -1171,7 +1171,7 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
       #************************************************************************************************
       
       # Subsidy ====
-      crd[c7,seq(2,7)] <- 207 # SUBSIDY AMOUNT ASSUMED @ £207/ha
+      crd[c7,seq(2,7)] <- 207 # SUBSIDY AMOUNT ASSUMED @ Â£207/ha
       cropData <- crd
       
       Operation=c("Spread P/K Fertiliser WWHT","Plough WWHT","Sowing WWHT","Roll WWHT",
@@ -1455,33 +1455,33 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
       vc <- kk1 # Updated data with farmOutput(soil, subsidy, blackgrass)
       
       # *Fertiliser ====
-      # Fertiliser (NPK) cost = (Fertiliser rate (kg/ha)* Fertiliser price(£/kg))
+      # Fertiliser (NPK) cost = (Fertiliser rate (kg/ha)* Fertiliser price(Â£/kg))
       vc[h6,seq(2,le)] <- fertcost <- (vc[1,seq(2,le)]*vc[4,seq(2,le)])+
         (vc[2,seq(2,le)]*vc[5,seq(2,le)])+(vc[3,seq(2,le)]*vc[6,seq(2,le)])
       
       # *Seed ====
-      # Seed cost (Seed rate (kg/ha) * Seed price (£/kg))
+      # Seed cost (Seed rate (kg/ha) * Seed price (Â£/kg))
       vc[h7,seq(2,le)] <- seedcost <- vc[7,seq(2,le)]*vc[8,seq(2,le)]
       
       # Herbicide cost is assumed to be the cost of herbicides targeting black-grass 
       # (cost of herbicides not specifically targeting black-grass, and other chemical costs, are incorporated in sundry costs).
-      # Herbicide cost = Total Herbicide rate (kg or l/ha) * Herbicide price (£/l)
+      # Herbicide cost = Total Herbicide rate (kg or l/ha) * Herbicide price (Â£/l)
       vc[h8,seq(2,le)] <- chemcost <- (vc[9,seq(2,le)]*vc[h1,seq(2,le)])+(vc[h2,seq(2,le)]*vc[h3,seq(2,le)])#
       
       # *Sundry ====
-      # Sundry Cost (£/ha) Informed by data from Nix (2014) Farm Management Pocketbook
+      # Sundry Cost (Â£/ha) Informed by data from Nix (2014) Farm Management Pocketbook
       sundry <- vc[c1,seq(2,le)] 
       
       # *Transport (sugar beet) ====
-      # Sugar beet transport cost from Nix (2014) based on £5/t
+      # Sugar beet transport cost from Nix (2014) based on Â£5/t
       vc[c2,seq(2,le)] <- sbeettransport <- vc[h5,seq(2,le)]*vc[c3,seq(2,le)] 
       
       # *Variable costs ====
-      # (£/ha)
+      # (Â£/ha)
       vc[c9,seq(2,le)] <- (fertcost+seedcost+chemcost+sundry+sbeettransport)
       
       # *Gross margin ====
-      # Gross margin (£/ha) = Output - Variable cost
+      # Gross margin (Â£/ha) = Output - Variable cost
       vc[c10,seq(2,le)] <- vc[c8,seq(2,le)]-vc[c9,seq(2,le)]
       kk2 <- vc
       
@@ -2004,11 +2004,11 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
       Fuel_Cons <- round(fuel.cons_gal_hr * 4.546,0) # Fuel consumption (litres/hour)
       Fuel_Cons_comb <- round(fuel.cons_gal_hr_comb * 4.546,0)
       
-      # Fuel and labour cost (£/hour)
+      # Fuel and labour cost (Â£/hour)
       fuelCost <-  (fuelPrice * Fuel_Cons)*1.1 # 10% represents oil and lubricants
       fuelCost_comb <- (fuelPrice * Fuel_Cons_comb)*1.1
       
-      # Fuel and labour costs @ £/ha (multiply £/hour by work rates (hr/ha))
+      # Fuel and labour costs @ Â£/ha (multiply Â£/hour by work rates (hr/ha))
       kk3[,10] <- round((kk3[,2]*fuelCost)+(kk3[,6]*fuelCost_comb)+
                           (kk3[,7]*fuelCost_comb)) # Fuel costs
       kk3[,11] <- round(kk3[,3]*labourWage) # Labour costs
@@ -2249,7 +2249,7 @@ solve_BGRI_ECOMOD <- function(filename,farmdata,default,farm="single",soil,rotle
                 "Sundry Cost","Variable Cost","Gross Margin",
                 "Fuel Cost","Labour Cost","Operating Cost","Gross Profit","Rotation Profit")
     
-    Unit=c("na","na",rep("£/ha",length(Component)-2))
+    Unit=c("na","na",rep("Â£/ha",length(Component)-2))
     
     # Row Indices
     c1 <- 18; c2 <- 19; c3 <- 20; c4 <- 21; c5 <- 22; c6 <- 23; c7 <- 24; c8 <- 25; c9 <- 26;
