@@ -2,7 +2,7 @@
 
 Authors: Dr Kwadjo Ahodo (main author), Dr Alexa Varah (design input), for The Black Grass Resistance Initiative (BGRI)
 
-Created: 2017
+Created: 2017; updated 2023
 
 Funding: BBSRC and AHDB
 
